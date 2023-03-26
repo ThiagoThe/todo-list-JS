@@ -1,0 +1,34 @@
+.list-item {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.finalizado {
+  text-decoration: line-through;
+}
+
+.list-item-button-finaliza {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.3em 0.6em;
+  margin: 0 5px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: lightgreen;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.list-item-button-remove {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.3em 0.6em;
+  margin: 0 5px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: lightcoral;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}

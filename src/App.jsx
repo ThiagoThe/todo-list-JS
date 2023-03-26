@@ -1,52 +1,46 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 import CardAdicionar from "./components/CardAdicionar";
-import { ListItem } from "./components/ListItem";
+import ListItem from "./components/ListItem";
 
 function App() {
   const [listaDeTarefas, setListaDeTarefas] = useState([
-    { id: 1, texto: "Estudar React", finalizado: false },
+    { id: 1, texto: "Tarefa 1", finalizado: false },
   ]);
 
   function adicionarTarefa(tarefa) {
-    /**
-     * receber o texto da tarefa
-     * criar um objeto tarefa
-     * set na lista de tarefas
-     * criar uma nova lista com todas as tarefas
-     */
-
+    /* 
+      1 [x] receber o texto da tarefa
+      2 [x] criar o objeto tarefa
+      3 [x] set na lista de tarefas*
+        3.1 [x] criar uma nova lista com todas as tarefas
+        3.2 [x] passar a nova lista para o set
+    */
     const novaTarefa = {
       id: listaDeTarefas.length + 1,
       texto: tarefa,
       finalizado: false,
-    }; //criado um objeto tarefa
+    };
 
-    // Sempre que for copiar um objeto ou array, é necessário usar o spread operator
-    const novalistaGeral = [...listaDeTarefas];
-    novalistaGeral.push(novaTarefa); //adiciona a nova tarefa na lista geral
+    // sempre que forem copiar um array ou objeto use o spread
+    const novaListaGeral = [...listaDeTarefas];
+    novaListaGeral.push(novaTarefa);
 
-    setListaDeTarefas(novalistaGeral);
+    setListaDeTarefas(novaListaGeral);
   }
 
-  function removerTarefa(id) {
-    const novaListaDeTarefas = listaDeTarefas.filter(
-      (tarefa) => tarefa.id !== id
-    );
-    setListaDeTarefas(novaListaDeTarefas);
+  function removerTarefa(tarefa) {
+    // filtra a tarefa selecionada e assim remove ela
+    const novaLista = listaDeTarefas.filter((item) => item.id != tarefa.id);
+
+    setListaDeTarefas(novaLista);
   }
 
   return (
     <div className="App">
-      <h1>To Do List</h1>
       <CardAdicionar adicionarTarefa={adicionarTarefa} />
-
       {listaDeTarefas.map((tarefa) => (
-        <ListItem
-          key={tarefa.id}
-          tarefa={tarefa}
-          removerTarefa={removerTarefa}
-        />
+        <ListItem tarefa={tarefa} removerTarefa={removerTarefa} />
       ))}
     </div>
   );
