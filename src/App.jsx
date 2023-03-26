@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import CardAdicionar from "./components/CardAdicionar";
+import { ListItem } from "./components/ListItem";
 
 function App() {
   const [listaDeTarefas, setListaDeTarefas] = useState([
@@ -28,12 +29,24 @@ function App() {
     setListaDeTarefas(novalistaGeral);
   }
 
+  function removerTarefa(id) {
+    const novaListaDeTarefas = listaDeTarefas.filter(
+      (tarefa) => tarefa.id !== id
+    );
+    setListaDeTarefas(novaListaDeTarefas);
+  }
+
   return (
     <div className="App">
+      <h1>To Do List</h1>
       <CardAdicionar adicionarTarefa={adicionarTarefa} />
 
       {listaDeTarefas.map((tarefa) => (
-        <li key={tarefa.id}>{tarefa.texto}</li>
+        <ListItem
+          key={tarefa.id}
+          tarefa={tarefa}
+          removerTarefa={removerTarefa}
+        />
       ))}
     </div>
   );
